@@ -1,0 +1,6 @@
+{
+  "name": "WHITE COSMOS | Market Intelligence",
+  "description": "Global Fashion Market Intelligence Authority. AI-01 Elite Analyst Core. Professional Trend Consolidation, Style Heatmapping & Strategic Insight Feed.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
