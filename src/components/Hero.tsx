@@ -31,11 +31,15 @@ export default function Hero() {
                 style={{ y: yText }}
                 className="relative z-10 text-white"
               >
-                <span className="block text-[8px] md:text-[10px] uppercase tracking-[1em] mb-6 opacity-60 font-black whitespace-nowrap">INTELLIGENCE CONSOLIDATION / ELITE ANALYST CORE</span>
-                <h1 className="text-4xl md:text-8xl font-serif leading-tight italic tracking-tighter">
+                <span className="block text-[8px] md:text-[10px] uppercase tracking-[1.5em] mb-10 opacity-60 font-black whitespace-nowrap">INTELLIGENCE CONSOLIDATION / ELITE ANALYST CORE / AI-01</span>
+                <h1 className="text-4xl md:text-[140px] font-serif leading-[0.85] italic tracking-tighter">
                   Fashion <br /> 
-                  <span className="not-italic opacity-90 font-light text-3xl md:text-6xl tracking-[0.2em]">Authority</span>
+                  <span className="not-italic opacity-90 font-light text-3xl md:text-7xl tracking-[0.3em] uppercase">Intelligence</span>
                 </h1>
+                <div className="mt-12 flex items-center gap-6">
+                   <div className="w-12 h-[1px] bg-white/40"></div>
+                   <p className="text-[10px] tracking-[0.5em] uppercase font-black text-white/40">Authority Node / Global Feed Active</p>
+                </div>
               </motion.div>
             </div>
           </motion.div>

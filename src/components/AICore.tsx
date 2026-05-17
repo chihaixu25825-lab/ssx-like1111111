@@ -88,41 +88,49 @@ export default function AICore() {
           
           {/* Neural Pulse Rings */}
           <div className="absolute inset-0 flex items-center justify-center">
-            {[1, 2, 3].map((ring) => (
+            {[1, 2, 3, 4, 5].map((ring) => (
               <motion.div
                 key={ring}
                 animate={{ 
-                  scale: [1, 2],
-                  opacity: [0.5, 0]
+                  scale: [1, 2.5],
+                  opacity: [0.3, 0],
+                  borderWidth: ['1px', '0.5px']
                 }}
                 transition={{ 
-                  duration: 3, 
+                  duration: 4, 
                   repeat: Infinity, 
-                  delay: ring * 1,
+                  delay: ring * 0.8,
                   ease: "easeOut" 
                 }}
-                className="absolute w-full h-full border border-white/20 rounded-full"
+                className="absolute w-full h-full border border-brand-gold/30 rounded-full"
               />
             ))}
           </div>
 
           {/* Main Core */}
-          <div className="relative w-12 h-12 bg-black rounded-full border border-white/10 flex items-center justify-center overflow-hidden">
-             <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent" />
+          <div className="relative w-14 h-14 bg-black rounded-full border border-white/20 flex items-center justify-center overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+             <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
              
-             {/* Neural Pulse Lines (Simulated with rotating gradient) */}
+             {/* Complex Neural Grid */}
+             <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] scale-50" />
+             
+             {/* Neural Pulse Lines */}
              <motion.div 
                animate={{ rotate: 360 }}
-               transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-               className="absolute w-[200%] h-[200%] bg-[conic-gradient(from_0deg,transparent_0deg,rgba(255,255,255,0.2)_180deg,transparent_200deg)]"
+               transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+               className="absolute w-[300%] h-[300%] bg-[conic-gradient(from_0deg,transparent_0deg,rgba(212,175,55,0.4)_180deg,transparent_200deg)]"
              />
 
-             <Brain size={20} className="text-white relative z-10" />
+             <Network size={22} className="text-white relative z-10" />
           </div>
 
-          {/* Status Light */}
-          <div className="absolute top-0 right-0 w-3 h-3 flex items-center justify-center">
-             <div className="w-1.5 h-1.5 bg-brand-gold rounded-full animate-pulse shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+          {/* Status Light (Complex) */}
+          <div className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center">
+             <motion.div 
+               animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+               transition={{ duration: 2, repeat: Infinity }}
+               className="w-2.5 h-2.5 bg-brand-gold rounded-full shadow-[0_0_15px_rgba(212,175,55,1)]" 
+             />
           </div>
 
           {/* Label Tooltip */}

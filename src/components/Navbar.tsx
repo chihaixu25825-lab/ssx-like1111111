@@ -15,10 +15,11 @@ export default function Navbar() {
   }, []);
 
   const menuItems = [
-    { name: 'Market Brain', en: '市场中枢' },
-    { name: 'Trend Scan', en: '趋势扫描' },
-    { name: 'Style Ranking', en: '款式排行' },
-    { name: 'Bestseller Prediction', en: '爆款预测' },
+    { name: 'Intelligence Flow', en: '智能流' },
+    { name: 'Global Signal Network', en: '全球信号网' },
+    { name: 'Market Fatigue Hub', en: '市场疲劳中枢' },
+    { name: 'Buyer Confidence Alpha', en: '买手信心指数' },
+    { name: 'Aesthetic Authority', en: '审美权威' },
   ];
 
   return (
@@ -54,10 +55,14 @@ export default function Navbar() {
         {/* Center: Logo */}
         <div className="flex-1 flex justify-center">
           <a href="/" className="group flex flex-col items-center">
-            <span className="text-2xl md:text-3xl tracking-[0.6em] font-serif font-light uppercase transition-all duration-700 group-hover:tracking-[0.8em]">
+            <span className="text-xl md:text-2xl tracking-[1em] font-serif font-light uppercase transition-all duration-1000 group-hover:tracking-[1.2em]">
               WHITE COSMOS
             </span>
-            <span className="max-w-0 group-hover:max-w-full transition-all duration-700 h-px bg-brand-gold w-full mt-1"></span>
+            <div className="flex items-center gap-4 mt-2">
+               <div className="h-px bg-brand-gold/40 w-8"></div>
+               <span className="text-[7px] tracking-[0.6em] text-brand-gold font-black uppercase">Market Intelligence Authority</span>
+               <div className="h-px bg-brand-gold/40 w-8"></div>
+            </div>
           </a>
         </div>
 
