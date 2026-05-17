@@ -10,7 +10,6 @@ import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import CinemaStream from './components/CinemaStream';
 import IntelligenceFlow from './components/IntelligenceFlow';
-import IntelligenceDashboard from './components/IntelligenceDashboard';
 import AICore from './components/AICore';
 import { motion, useScroll, useSpring } from 'motion/react';
 
@@ -58,7 +57,6 @@ export default function App() {
         <IntelligenceFlow />
         
         <Footer />
-        <IntelligenceDashboard />
         <AICore />
       </div>
     </main>

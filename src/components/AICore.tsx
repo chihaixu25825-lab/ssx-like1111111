@@ -1,35 +1,44 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Brain, Cpu, MessageSquare, Upload, FileText, PieChart, TrendingUp, X, Sparkles, Network } from 'lucide-react';
+import { Brain, Network, X, Brain as BrainIcon, Radio, Upload, Globe, ArrowRight, ShieldCheck, Activity, Cpu, FileText, Sparkles } from 'lucide-react';
 import { whiteCosmos } from '../services/dnaEngine';
 
 export default function AICore() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [status, setStatus] = useState('Silent Intelligence');
+  const [analystStatus, setAnalystStatus] = useState('Silent Intelligence');
   const [logs, setLogs] = useState(whiteCosmos.getLogs());
   const [report, setReport] = useState<any>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setLogs([...whiteCosmos.getLogs()]);
       
       const statuses = [
-        'ANALYZING GLOBAL RUNWAY',
-        'DETECTING TREND SHIFT',
-        'MARKET SIGNAL ACQUIRED',
-        'LUXURY EVOLUTION MAPPING',
-        'CONSUMER TASTE SYNCING',
-        'SATURATION ALERT: LOGO MANIA'
+        'AGENT-101: RUNWAY SOUNDLESS',
+        'AGENT-102: MICRO DETAIL SCAN',
+        'AGENT-104: VISUAL CALM SYNC',
+        'AGENT-105: AUTHENTICITY VALIDATION',
+        'AGENT-107: CONSTRUCTION INTEL',
+        'AGENT-108: IMMERSIVE FLOW',
+        'AGENT-109: AESTHETIC SHIFT INDEX',
+        'AGENT-110: LUXURY IMMERSION CORE'
       ];
       if (Math.random() > 0.7) {
-        setStatus(statuses[Math.floor(Math.random() * statuses.length)]);
-        setTimeout(() => setStatus('Silent Intelligence'), 3000);
+        setAnalystStatus(statuses[Math.floor(Math.random() * statuses.length)]);
+        setTimeout(() => setAnalystStatus('Silent Intelligence'), 3000);
       }
     }, 4000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [logs]);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -42,344 +51,241 @@ export default function AICore() {
     setTimeout(() => {
       setIsAnalyzing(false);
       setReport({
-        type: file.type.includes('image') ? 'IMAGE_ANALYSIS' : 'DOCUMENT_INSIGHT',
+        type: file.type.includes('image') ? 'SILHOUETTE_SCAN' : 'MARKET_FORECAST',
         name: file.name,
         timestamp: new Date().toISOString(),
         analysis: {
-          silhouette: "Tailored Outerwear / Softened Authority",
-          trendLifecycle: "Rising / Early Growth",
-          buyerConfidence: "0.94 (Strong Order Candidate)",
-          luxuryStability: "0.96 (High-Value Asset)",
-          marketFatigue: "0.08 (Minimal Dilution)",
-          collectionCoherence: "0.92 (High Integrity)",
-          commercialImpact: "High-yield strategic entry for SS27 premium cohorts.",
+          silhouette: "Aggressive Brutalism / Shifting to Fluid Noir",
+          trendLifecycle: "Emerging / High Potential",
+          buyerConfidence: "0.91 (Strategic Accumulation)",
+          luxuryStability: "0.98 (Archival Quality)",
+          marketFatigue: "0.02 (Absolute Freshness)",
+          collectionCoherence: "0.94 (DNA Integrity)",
+          luxuryDensity: "0.96 (High-Value Asset)",
+          growthVelocity: "0.88 High",
+          commercialImpact: "Dominant aesthetic signal for SS27 ultra-luxury tiers.",
           executiveSummary: {
-            what: "Structural shift from rigid brutalism to 'Fluid Authority' silhouettes.",
-            why: "Consumer fatigue with industrial harshness; market pivot toward 'Protective Softness'.",
-            impact: "High sell-through potential in tier-1 luxury retail sectors."
+            what: "Structural migration from Industrial Brutalism to 'Soft Armor' silhouettes.",
+            why: "Saturation of rigid power-dressing; consumer pivot to material-driven authority.",
+            impact: "High commercial yield in Paris/Milan core luxury sectors."
           }
         },
-        recommendation: "Strategic Bestseller Candidate. Recommended for deep inventory positioning for SS27 core luxury segments."
+        recommendation: "Pillar Asset Candidate. Recommended for priority inventory positioning for upcoming FW27/SS28 cycles."
       });
     }, 3000);
   };
 
   return (
-    <>
-      {/* Floating AI Core Button */}
-      <motion.div 
-        className="fixed bottom-10 right-10 z-[2000]"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-      >
-        <button 
-          onClick={() => setIsOpen(true)}
-          className="group relative w-16 h-16 flex items-center justify-center"
-        >
-          {/* Breathing Aura */}
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.3, 0.1]
-            }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0 bg-white rounded-full blur-xl"
-          />
-          
-          {/* Neural Pulse Rings */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            {[1, 2, 3, 4, 5].map((ring) => (
-              <motion.div
-                key={ring}
-                animate={{ 
-                  scale: [1, 2.5],
-                  opacity: [0.3, 0],
-                  borderWidth: ['1px', '0.5px']
-                }}
-                transition={{ 
-                  duration: 4, 
-                  repeat: Infinity, 
-                  delay: ring * 0.8,
-                  ease: "easeOut" 
-                }}
-                className="absolute w-full h-full border border-brand-gold/30 rounded-full"
-              />
-            ))}
-          </div>
-
-          {/* Main Core */}
-          <div className="relative w-14 h-14 bg-black rounded-full border border-white/20 flex items-center justify-center overflow-hidden shadow-[0_0_30px_rgba(255,255,255,0.1)]">
-             <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
-             
-             {/* Complex Neural Grid */}
-             <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] scale-50" />
-             
-             {/* Neural Pulse Lines */}
-             <motion.div 
-               animate={{ rotate: 360 }}
-               transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-               className="absolute w-[300%] h-[300%] bg-[conic-gradient(from_0deg,transparent_0deg,rgba(212,175,55,0.4)_180deg,transparent_200deg)]"
-             />
-
-             <Network size={22} className="text-white relative z-10" />
-          </div>
-
-          {/* Status Light (Complex) */}
-          <div className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center">
-             <motion.div 
-               animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-               transition={{ duration: 2, repeat: Infinity }}
-               className="w-2.5 h-2.5 bg-brand-gold rounded-full shadow-[0_0_15px_rgba(212,175,55,1)]" 
-             />
-          </div>
-
-          {/* Label Tooltip */}
-          <div className="absolute right-20 top-1/2 -translate-y-1/2 whitespace-nowrap hidden group-hover:block">
-             <div className="flex flex-col items-end">
-                <span className="text-[7px] tracking-[0.5em] text-black/40 uppercase font-black">AI Core 01</span>
-                <span className="text-[10px] tracking-widest text-black font-bold uppercase">{status}</span>
-             </div>
-          </div>
-        </button>
-      </motion.div>
-
+    <div className="fixed bottom-12 right-12 z-[2000]">
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[3000] flex items-center justify-center px-6 pointer-events-none">
-            {/* Backdrop */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-              className="absolute inset-0 bg-black/40 backdrop-blur-sm pointer-events-auto"
-            />
-
-            {/* Panel */}
-            <motion.div 
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-4xl max-h-[85vh] bg-white rounded-3xl shadow-2xl overflow-hidden border border-white/20 pointer-events-auto flex flex-col md:flex-row"
-            >
-              {/* Sidebar: Intelligence Stream */}
-              <div className="w-full md:w-80 bg-gray-50/50 border-r border-gray-100 p-8 flex flex-col">
-                <div className="flex items-center gap-3 mb-10">
-                   <Network size={16} className="text-brand-gold" />
-                   <span className="text-[9px] tracking-[0.5em] uppercase font-black">Market Neural Path</span>
-                </div>
-                
-                <div className="flex-1 overflow-y-auto space-y-6 pr-2 -mr-4 custom-scrollbar">
-                   {logs.map((log, i) => (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 40 }}
+            className="absolute bottom-28 right-0 w-[550px] max-h-[85vh] bg-black text-white shadow-2xl flex flex-col overflow-hidden border border-white/10 rounded-px"
+          >
+            {/* Analyst Header */}
+            <div className="p-8 border-b border-white/10 flex justify-between items-center bg-zinc-900">
+               <div className="flex items-center gap-5">
+                  <div className="relative">
+                     <BrainIcon size={24} className="text-brand-gold" />
                      <motion.div 
-                       key={i}
-                       initial={{ opacity: 0, x: -10 }}
-                       animate={{ opacity: 1, x: 0 }}
-                       transition={{ delay: i * 0.05 }}
-                       className="space-y-1"
-                     >
-                       <div className="flex justify-between items-center">
-                          <span className="text-[7px] font-mono text-gray-400">{log.timestamp}</span>
-                          <span className="text-[7px] font-mono text-brand-gold">{log.action}</span>
-                       </div>
-                       <p className="text-[10px] text-gray-600 font-medium leading-relaxed uppercase tracking-wider">{log.foundIntelligence}</p>
-                     </motion.div>
-                   ))}
-                </div>
+                        animate={{ scale: [1, 1.8, 1], opacity: [0.4, 0, 0.4] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="absolute inset-0 bg-brand-gold rounded-full"
+                     />
+                  </div>
+                  <div>
+                    <h3 className="text-[11px] tracking-[0.6em] font-black uppercase text-brand-gold">Elite Analyst Core AI-01</h3>
+                    <p className="text-[9px] tracking-[0.4em] font-mono text-white/30 uppercase">{analystStatus}</p>
+                  </div>
+               </div>
+               <button onClick={() => setIsOpen(false)} className="text-white/20 hover:text-white transition-colors duration-500">
+                  <X size={20} strokeWidth={1} />
+               </button>
+            </div>
 
-                <div className="mt-8 pt-8 border-t border-gray-100 italic font-serif text-sm text-gray-400">
-                  "The market is a nervous system. We do not observe it; we become it."
-                </div>
-              </div>
-
-              {/* Main Content: Intelligence Panel */}
-              <div className="flex-1 p-10 flex flex-col overflow-y-auto">
-                <div className="flex justify-between items-start mb-12">
-                   <div>
-                      <h2 className="text-4xl font-serif italic mb-2 tracking-tighter">Fashion Intelligence Core</h2>
-                      <p className="text-[10px] tracking-[0.6em] text-gray-400 uppercase font-black">Global Market Brain / SS27 ALPHA</p>
-                   </div>
-                   <button 
-                     onClick={() => setIsOpen(false)}
-                     className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center hover:bg-gray-50 transition-colors"
+            <div className="flex-1 overflow-y-auto custom-scrollbar flex">
+               {/* Left: Intelligence Logs */}
+               <div className="w-[45%] border-r border-white/5 bg-black/50 p-8 space-y-8 overflow-y-auto" ref={scrollRef}>
+                 <p className="text-[9px] tracking-[0.5em] font-black uppercase text-white/20 mb-10">Signal_Stream</p>
+                 {logs.map((log, i) => (
+                   <motion.div 
+                     key={i} 
+                     initial={{ opacity: 0, x: -10 }} 
+                     animate={{ opacity: 1, x: 0 }} 
+                     className="group border-l border-brand-gold/20 pl-6 space-y-3"
                    >
-                     <X size={16} />
-                   </button>
-                </div>
-
-                {/* Upload & Interaction Area */}
-                <div className="space-y-10">
-                   <div 
-                     onClick={() => fileInputRef.current?.click()}
-                     className="group border-2 border-dashed border-gray-100 rounded-3xl p-12 text-center hover:border-brand-gold hover:bg-brand-gold/[0.02] transition-all cursor-pointer"
-                   >
-                      <input 
-                        type="file" 
-                        className="hidden" 
-                        ref={fileInputRef} 
-                        onChange={handleFileUpload}
-                      />
-                      <div className="flex flex-col items-center gap-6">
-                        <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:bg-brand-gold/10 transition-all">
-                           <Upload size={24} className="text-gray-400 group-hover:text-brand-gold" />
-                        </div>
-                        <div>
-                           <p className="text-xl font-serif mb-2 italic">Connect Intelligence Nodes</p>
-                           <p className="text-[10px] tracking-[0.2em] text-gray-400 uppercase">Upload: Runway Shot, Market Report, Fabric Code or Tech Pack</p>
-                        </div>
+                      <div className="flex justify-between items-center opacity-30">
+                         <span className="text-[8px] font-mono tracking-widest">{log.timestamp}</span>
+                         <span className="text-[8px] tracking-[0.4em] font-black uppercase">{log.action}</span>
                       </div>
-                   </div>
+                      <p className="text-[11px] font-light leading-relaxed tracking-wider text-white/70 group-hover:text-brand-gold transition-colors duration-500">
+                         {log.foundIntelligence}
+                      </p>
+                   </motion.div>
+                 ))}
+               </div>
 
-                   {/* Analysis Results / Reports */}
-                   <AnimatePresence mode="wait">
-                     {isAnalyzing ? (
-                       <motion.div 
-                         key="analyzing"
-                         initial={{ opacity: 0 }}
-                         animate={{ opacity: 1 }}
-                         exit={{ opacity: 0 }}
-                         className="flex flex-col items-center gap-6 py-20"
-                       >
-                          <div className="relative w-20 h-20">
-                             <motion.div 
-                               animate={{ rotate: 360 }}
-                               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                               className="absolute inset-0 border-2 border-brand-gold border-t-transparent rounded-full"
-                             />
-                             <div className="absolute inset-0 flex items-center justify-center">
-                                <Sparkles className="text-brand-gold" size={24} />
-                             </div>
-                          </div>
-                          <p className="text-[11px] tracking-[0.8em] uppercase font-black text-brand-gold animate-pulse">Decoding Aesthetic Vectors...</p>
-                       </motion.div>
-                     ) : report ? (
-                       <motion.div 
-                         key="report"
-                         initial={{ opacity: 0, y: 20 }}
-                         animate={{ opacity: 1, y: 0 }}
-                         className="bg-gray-50/50 rounded-3xl p-10 space-y-10 border border-gray-100"
-                       >
-                          <div className="flex justify-between items-center border-b border-gray-100 pb-6">
-                             <div className="flex items-center gap-4">
-                                <FileText className="text-brand-gold" size={20} />
-                                <div>
-                                   <p className="text-[7px] tracking-[0.3em] font-black uppercase text-gray-400">Intelligence Node Generated</p>
-                                   <p className="text-sm font-bold tracking-widest uppercase">{report.name}</p>
-                                </div>
-                             </div>
-                             <div className="text-right">
-                                <p className="text-[10px] font-mono text-gray-400">{report.timestamp}</p>
-                                <p className="text-[9px] text-brand-gold font-bold uppercase tracking-widest">{report.type}</p>
-                             </div>
-                          </div>
+               {/* Right: Analysis & Tools */}
+               <div className="w-[55%] p-10 bg-zinc-950/50 space-y-12">
+                  <AnimatePresence mode="wait">
+                    {isAnalyzing ? (
+                      <motion.div 
+                        key="analyzing"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="h-full flex flex-col items-center justify-center gap-8 py-20"
+                      >
+                         <div className="relative w-20 h-20">
+                            <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} className="absolute inset-0 border-2 border-brand-gold border-t-transparent rounded-full" />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                               <Sparkles className="text-brand-gold" size={24} />
+                            </div>
+                         </div>
+                         <p className="text-[10px] tracking-[1em] text-brand-gold uppercase animate-pulse">Decoding Aesthetic Vectors...</p>
+                      </motion.div>
+                    ) : report ? (
+                      <motion.div 
+                        key="report"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="space-y-10"
+                      >
+                         <div className="space-y-4">
+                            <p className="text-[9px] tracking-[0.5em] font-black uppercase text-brand-gold">Active Report / {report.type}</p>
+                            <h4 className="text-3xl font-serif italic text-white/90">{report.name}</h4>
+                         </div>
 
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                             <div className="space-y-8">
-                                <div>
-                                   <h4 className="text-[8px] tracking-[0.4em] uppercase font-bold text-gray-400 mb-4 italic">Executive Summary / 决策摘要</h4>
-                                   <div className="space-y-4 bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                                      <div>
-                                         <p className="text-[7px] text-brand-gold uppercase tracking-widest mb-1">What Changed</p>
-                                         <p className="text-[10px] text-gray-600 font-medium">{report.analysis.executiveSummary.what}</p>
-                                      </div>
-                                      <div>
-                                         <p className="text-[7px] text-brand-gold uppercase tracking-widest mb-1">Strategic Significance</p>
-                                         <p className="text-[10px] text-gray-600 font-medium">{report.analysis.executiveSummary.why}</p>
-                                      </div>
-                                      <div>
-                                         <p className="text-[7px] text-brand-gold uppercase tracking-widest mb-1">Commercial Impact</p>
-                                         <p className="text-[10px] text-gray-600 font-medium">{report.analysis.executiveSummary.impact}</p>
-                                      </div>
-                                   </div>
-                                </div>
-                                <div>
-                                   <h4 className="text-[8px] tracking-[0.4em] uppercase font-bold text-gray-400 mb-4 italic">Market Logistics</h4>
-                                   <div className="space-y-4">
-                                      <div className="flex justify-between border-b border-gray-100 pb-2">
-                                         <span className="text-[10px] text-gray-500 uppercase tracking-widest">Trend Lifecycle</span>
-                                         <span className="text-[10px] font-bold text-brand-gold uppercase tracking-widest">{report.analysis.trendLifecycle}</span>
-                                      </div>
-                                      <div className="flex justify-between border-b border-gray-100 pb-2">
-                                         <span className="text-[10px] text-gray-500 uppercase tracking-widest">Buyer Confidence</span>
-                                         <span className="text-[10px] font-bold text-black uppercase tracking-widest">{report.analysis.buyerConfidence}</span>
-                                      </div>
-                                      <div className="flex justify-between border-b border-gray-100 pb-2">
-                                         <span className="text-[10px] text-gray-500 uppercase tracking-widest">Luxury Stability</span>
-                                         <span className="text-[10px] font-bold text-black uppercase tracking-widest">{report.analysis.luxuryStability}</span>
-                                      </div>
-                                      <div className="flex justify-between border-b border-gray-100 pb-2">
-                                         <span className="text-[10px] text-gray-500 uppercase tracking-widest">Market Fatigue</span>
-                                         <span className="text-[10px] font-bold text-black uppercase tracking-widest">{report.analysis.marketFatigue}</span>
-                                      </div>
-                                      <div className="flex justify-between border-b border-gray-100 pb-2">
-                                         <span className="text-[10px] text-gray-500 uppercase tracking-widest">Coherence Rate</span>
-                                         <span className="text-[10px] font-bold text-black uppercase tracking-widest">{report.analysis.collectionCoherence}</span>
-                                      </div>
-                                   </div>
-                                </div>
-                             </div>
+                         <div className="space-y-6 bg-white/5 p-6 border border-white/5">
+                            <p className="text-[9px] tracking-[0.4em] font-black uppercase text-white/40">Market Positioning</p>
+                            <p className="text-sm font-light leading-relaxed tracking-widest text-white/80">{report.analysis.commercialImpact}</p>
+                            <div className="grid grid-cols-2 gap-6 pt-4 border-t border-white/5">
+                               <div>
+                                  <p className="text-[7px] text-brand-gold uppercase tracking-widest mb-1">Buy Confidence</p>
+                                  <p className="text-base font-mono">{report.analysis.buyerConfidence}</p>
+                               </div>
+                               <div>
+                                  <p className="text-[7px] text-brand-gold uppercase tracking-widest mb-1">Luxury Density</p>
+                                  <p className="text-base font-mono">{report.analysis.luxuryDensity}</p>
+                               </div>
+                               <div>
+                                  <p className="text-[7px] text-brand-gold uppercase tracking-widest mb-1">Trend Velocity</p>
+                                  <p className="text-base font-mono">{report.analysis.growthVelocity}</p>
+                               </div>
+                               <div>
+                                  <p className="text-[7px] text-brand-gold uppercase tracking-widest mb-1">Stability</p>
+                                  <p className="text-base font-mono">{report.analysis.luxuryStability}</p>
+                               </div>
+                            </div>
+                         </div>
 
-                             <div className="space-y-8">
-                                <div>
-                                   <h4 className="text-[8px] tracking-[0.4em] uppercase font-bold text-gray-400 mb-4 italic">Commercial Positioning</h4>
-                                   <div className="space-y-4">
-                                      <div className="p-4 bg-white rounded-2xl border border-gray-100">
-                                         <p className="text-[7px] text-gray-400 uppercase tracking-widest mb-1">Target Assessment</p>
-                                         <p className="text-xs font-bold text-black uppercase">{report.analysis.commercialImpact}</p>
-                                      </div>
-                                      <div className="p-4 bg-white rounded-2xl border border-gray-100">
-                                         <p className="text-[7px] text-gray-400 uppercase tracking-widest mb-1">Silhouette Core</p>
-                                         <p className="text-xs font-bold text-black uppercase">{report.analysis.silhouette}</p>
-                                      </div>
-                                   </div>
-                                </div>
-                                <div className="p-6 bg-brand-black text-white rounded-2xl">
-                                   <h4 className="text-[8px] tracking-[0.4em] uppercase font-bold text-brand-gold mb-3">AI Strategic Verdict</h4>
-                                   <p className="text-sm font-serif italic leading-relaxed opacity-80">"{report.recommendation}"</p>
-                                </div>
-                                <div className="flex gap-4">
-                                   <button className="flex-1 bg-black text-white text-[9px] tracking-[0.3em] font-black uppercase py-4 rounded-xl hover:bg-gray-900 transition-colors">Export Report</button>
-                                   <button className="flex-1 border border-gray-200 text-black text-[9px] tracking-[0.3em] font-black uppercase py-4 rounded-xl hover:bg-gray-50 transition-colors">Archive Node</button>
-                                </div>
-                             </div>
-                          </div>
-                       </motion.div>
-                     ) : (
-                       <motion.div 
-                         key="empty"
-                         initial={{ opacity: 0 }}
-                         animate={{ opacity: 1 }}
-                         className="flex flex-col items-center gap-10 py-10"
-                       >
-                          <div className="grid grid-cols-3 gap-8 w-full max-w-lg">
-                             <div className="text-center space-y-3">
-                                <div className="w-10 h-10 rounded-full border border-gray-100 mx-auto flex items-center justify-center">
-                                   <Cpu size={14} className="text-gray-300" />
-                                </div>
-                                <p className="text-[8px] tracking-widest uppercase font-bold text-gray-400">Signal-X Scan</p>
-                             </div>
-                             <div className="text-center space-y-3">
-                                <div className="w-10 h-10 rounded-full border border-gray-100 mx-auto flex items-center justify-center">
-                                   <PieChart size={14} className="text-gray-300" />
-                                </div>
-                                <p className="text-[8px] tracking-widest uppercase font-bold text-gray-400">Pulse Origin</p>
-                             </div>
-                             <div className="text-center space-y-3">
-                                <div className="w-10 h-10 rounded-full border border-gray-100 mx-auto flex items-center justify-center">
-                                   <TrendingUp size={14} className="text-gray-300" />
-                                </div>
-                                <p className="text-[8px] tracking-widest uppercase font-bold text-gray-400">Predictive Momentum</p>
-                             </div>
-                          </div>
-                       </motion.div>
-                     )}
-                   </AnimatePresence>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+                         <div className="p-6 bg-brand-gold/10 border border-brand-gold/20">
+                            <p className="text-[9px] tracking-[0.4em] font-black uppercase text-brand-gold mb-3">Verdict</p>
+                            <p className="text-xs font-light tracking-widest leading-relaxed italic text-white/90">"{report.recommendation}"</p>
+                         </div>
+
+                         <button onClick={() => setReport(null)} className="w-full py-4 text-[10px] tracking-[0.5em] font-black uppercase border border-white/10 hover:bg-white hover:text-black transition-all">Reset Console</button>
+                      </motion.div>
+                    ) : (
+                      <div className="space-y-12">
+                         <div 
+                           onClick={() => fileInputRef.current?.click()}
+                           className="group border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-gold/30 p-12 text-center cursor-pointer transition-all"
+                         >
+                            <input type="file" className="hidden" ref={fileInputRef} onChange={handleFileUpload} />
+                            <Upload size={32} className="mx-auto mb-6 text-white/20 group-hover:text-brand-gold transition-colors" />
+                            <p className="text-[11px] tracking-[0.6em] font-black uppercase mb-2">Upload Intel Node</p>
+                            <p className="text-[8px] tracking-[0.2em] font-light text-white/20 uppercase">Runway Report / Silhouette Scan</p>
+                         </div>
+
+                         <div className="grid grid-cols-2 gap-4">
+                            <button className="flex items-center justify-center gap-3 py-6 border border-white/5 hover:bg-white/5 transition-all">
+                               <Globe size={14} className="text-brand-gold" />
+                               <span className="text-[9px] tracking-[0.4em] font-black uppercase">Global Map</span>
+                            </button>
+                            <button className="flex items-center justify-center gap-3 py-6 border border-white/5 hover:bg-white/5 transition-all">
+                               <Network size={14} className="text-brand-gold" />
+                               <span className="text-[9px] tracking-[0.4em] font-black uppercase">DNA Path</span>
+                            </button>
+                         </div>
+
+                         <div className="p-6 bg-zinc-900 border border-white/5 space-y-4">
+                            <div className="flex items-center gap-3 opacity-40">
+                               <Cpu size={12} />
+                               <span className="text-[8px] tracking-[0.4em] font-black uppercase">System Logic</span>
+                            </div>
+                            <p className="text-sm font-serif italic text-white/40 leading-relaxed">
+                               "Decoding the migration from physical wealth to digital aura restraint. Market predictive momentum at 128.4 Hz."
+                            </p>
+                         </div>
+                      </div>
+                    )}
+                  </AnimatePresence>
+               </div>
+            </div>
+
+            {/* Analyst Dialogue Input */}
+            <div className="p-6 bg-zinc-950 flex items-center gap-6 border-t border-white/5">
+               <input 
+                 type="text" 
+                 placeholder="INQUIRE MARKET CONSCIOUSNESS..." 
+                 className="flex-1 bg-transparent border-none focus:ring-0 text-[11px] tracking-[0.4em] font-black uppercase text-white/40 placeholder:text-white/10"
+               />
+               <button className="w-12 h-12 bg-white/5 hover:bg-brand-gold hover:text-black transition-all flex items-center justify-center">
+                  <ArrowRight size={18} />
+               </button>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
-    </>
+
+      <motion.button
+        onClick={() => setIsOpen(!isOpen)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="w-24 h-24 bg-black rounded-full flex items-center justify-center relative shadow-[0_0_60px_rgba(0,0,0,0.8)] border border-white/10 overflow-hidden group"
+      >
+        <motion.div
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.5, 0.2],
+            boxShadow: isOpen ? "0 0 50px rgba(212,175,55,0.4)" : "0 0 30px rgba(255,255,255,0.05)"
+          }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-brand-gold/10"
+        />
+
+        <div className="relative z-10">
+           {isOpen ? (
+             <X size={28} strokeWidth={1} className="text-white" />
+           ) : (
+             <div className="flex flex-col items-center gap-2">
+                <Network size={28} strokeWidth={1} className="text-brand-gold" />
+                <div className="flex gap-1.5 h-3 items-end">
+                   <motion.div animate={{ height: [4, 12, 4] }} transition={{ duration: 0.6, repeat: Infinity, delay: 0 }} className="w-[2px] bg-brand-gold/30" />
+                   <motion.div animate={{ height: [12, 4, 12] }} transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }} className="w-[2px] bg-brand-gold" />
+                   <motion.div animate={{ height: [6, 10, 6] }} transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }} className="w-[2px] bg-brand-gold/30" />
+                </div>
+             </div>
+           )}
+        </div>
+
+        {/* Outer Circular Pulse */}
+        <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none group-hover:scale-110 transition-transform duration-1000">
+           <motion.circle
+             cx="48" cy="48" r="44"
+             fill="none"
+             stroke="currentColor"
+             strokeWidth="0.5"
+             className="text-brand-gold opacity-10"
+             strokeDasharray="276.4"
+             animate={{ strokeDashoffset: [276.4, 0, -276.4] }}
+             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+           />
+        </svg>
+      </motion.button>
+    </div>
   );
 }
